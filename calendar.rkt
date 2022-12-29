@@ -24,6 +24,10 @@
   (lambda (d)
     (let ([diff (remainder (+ 4 (remainder (diff-days (date 1970 1 1) d)7))7)])
       (if (= diff 0) 7 diff))))
+;星期加1天
+(define incr-week
+  (lambda (w)
+    (if (= w 7) 1 (+ w 1))))
 
 ;日期加一天
 (define add-day
@@ -79,6 +83,32 @@
 (define diff-days
   (lambda (sdate edate)
     (if (date-before? sdate edate) (+ 1 (diff-days (add-day sdate) edate)) 0)))
+
+
+;打印日历
+(define (print-calendar dt)
+  (define (get-day n w month-days)
+    (cond ((= n month-days) (number->string n))
+          ((<= n 0) (string-append "   " (get-day (+ 1 n) w month-days)))
+          (else (string-append (if (< n 10) " " "")(number->string n)
+                       (if (= 7 w) "\n" " ")
+                       (get-day (+ 1 n) (incr-week w) month-days)))))
+  (let* ([y (year dt)]
+         [m (month dt)]
+         [d (day dt)]
+         [w (week (date y m 1) )]
+         [n (- 2 w)]
+         [end-day (month-day-count y m)])
+    
+    (string-append
+     "====================\n"
+     (number->string y) "." (number->string m) "\n"
+     "====================\n"
+     "Mo Tu We Th Fr Sa Su\n"
+     "====================\n"
+     (get-day n w end-day)
+     "\n"
+     "====================\n")))
   
 (year (date 2022 12 28))
 (month (date 2022 12 28))
@@ -92,7 +122,7 @@
 (date->string (add-day (date 2022 12 28)))
 
 
-(date->string (add-days (date 1970 1 1) 20000000))
+(date->string (add-days (date 1970 1 1) 20000))
 
 (date->string (add-day (date 2022 12 31)))
 (date->string (add-day (date 2022 11 30)))
@@ -105,3 +135,13 @@
 
 
 (diff-days (date 1970 1 1) (date 2024 10 4))
+(display (print-calendar (date 2022 12 29)))
+
+(display (print-calendar (date 2023 1 1)))
+(display (print-calendar (date 2023 4 1)))
+(display (print-calendar (date 102023 4 1)))
+;(print-calendar (date 2022 12 29))
+
+
+
+ 
