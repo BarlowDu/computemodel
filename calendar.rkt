@@ -110,36 +110,30 @@
      "\n"
      "====================\n")))
   
-(year (date 2022 12 28))
-(month (date 2022 12 28))
-(day (date 2022 12 28))
-(week (date 2022 12 28))
-(week (date 2022 12 25))
-(week (date 2022 12 26))
-(week (date 2022 12 26))
-(week (date 2022 12 24))
+;(year (date 2022 12 28))
+;(month (date 2022 12 28))
+;(day (date 2022 12 28))
+;(week (date 2022 12 28))
 
-(date->string (add-day (date 2022 12 28)))
+;(date->string (add-day (date 2022 12 28)))
 
+;(date->string (add-days (date 1970 1 1) 20000))
 
-(date->string (add-days (date 1970 1 1) 20000))
+;(date->string (add-day (date 2022 12 31)))
+;(date->string (add-day (date 2022 11 30)))
 
-(date->string (add-day (date 2022 12 31)))
-(date->string (add-day (date 2022 11 30)))
-
-(date->string (date 2022 12 28))
+;(date->string (date 2022 12 28))
 
 
-(date-before? (date 2022 12 29) (date 2022 12 28))
+;(date-before? (date 2022 12 29) (date 2022 12 28))
 
 
 
-(diff-days (date 1970 1 1) (date 2024 10 4))
+;(diff-days (date 1970 1 1) (date 2024 10 4))
 (display (print-calendar (date 2022 12 29)))
 
 (display (print-calendar (date 2023 1 1)))
 (display (print-calendar (date 2023 4 1)))
-(display (print-calendar (date 102023 4 1)))
 ;(print-calendar (date 2022 12 29))
 
 
